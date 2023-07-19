@@ -1,0 +1,30 @@
+int x = 2;
+int count = 2; 
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("The first 30 prime numbers are...");
+}
+
+void loop() {
+  for (int numbers=0; numbers <30;){
+    if(isPrime(count)) {
+    Serial.println(count);
+    numbers++;
+    }
+    count++;
+  }
+}
+
+boolean isPrime(int x) {
+  boolean prime = true;
+  
+  for(int i = 2; i <= x/2; i++) {
+    if(x % i == 0) {
+      prime = false;
+      break;
+    }
+  }
+  
+  return prime;
+}
