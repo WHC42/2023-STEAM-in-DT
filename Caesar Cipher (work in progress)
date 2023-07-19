@@ -1,0 +1,83 @@
+
+#define ONBOARD_LED 12    // LED GP12
+#define SHORT_DELAY 300
+#define LONG_DELAY 900
+
+char input;
+
+void morseCharacter(char input) {
+  char _input = input;
+  _input = ((_input >= 'a') && (_input <= 'z')) ? _input - 32 : _input; //lower to upper case
+  
+  switch (_input) {
+    case 'A':
+      {Serial.print("E");}break;
+    case 'B':
+      {Serial.print("F");}break;
+    case 'C':
+      {Serial.print("G");}break;
+    case 'D':
+      {Serial.print("H");}break;
+    case 'E':
+      {Serial.print("I");}break;
+    case 'F':
+      {Serial.print("J");}break;
+    case 'G':
+      {Serial.print("K");}break;
+    case 'H':
+      {Serial.print("L");}break;
+    case 'I':
+      {Serial.print("M");}break;
+    case 'J':
+      {Serial.print("N");}break;
+    case 'K':
+      {Serial.print("O");}break;
+    case 'L':
+      {Serial.print("P");}break;
+    case 'M':
+      {Serial.print("Q");}break;
+    case 'N':
+      {Serial.print("R");}break;
+    case 'O':
+      {Serial.print("S");}break;
+    case 'P':
+      {Serial.print("T");}break;
+    case 'Q':
+      {Serial.print("U");}break;
+    case 'R':
+      {Serial.print("V");}break;
+    case 'S':
+      {Serial.print("W");}break;
+    case 'T':
+      {Serial.print("X");}break;
+    case 'U':
+      {Serial.print("Y");}break;
+    case 'V':
+      {Serial.print("Z");}break;
+    case 'W':
+      {Serial.print("A");}break;
+    case 'X':
+      {Serial.print("B");}break;
+    case 'Y':
+      {Serial.print("C");}break;
+    case 'Z':
+      {Serial.print("D");}break;
+    case ' ':
+      {Serial.print(" ");}break;
+  }
+}
+                    
+void setup() {
+   Serial.begin(115200);
+   Serial.println("Ceaser Cipher Encoder");
+}
+
+void loop() {
+   if(Serial.available()) {
+      input = Serial.read();
+      morseCharacter(input);
+      Serial.println (input);
+   }
+}
+                    
+                
