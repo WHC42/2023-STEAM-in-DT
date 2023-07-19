@@ -1,7 +1,9 @@
 String rcvString = "";
-int weight = 0;
+float weight = 0;
 float height = 0.0;
 float BMI = 0.0;
+float x = 0.0;
+float y = 0.0;
 
 void setup() {
    Serial.begin(115200); //set up serial library baud rate to 115200
@@ -12,44 +14,49 @@ void setup() {
 
 
 void loop() {
-   if(Serial.available()) {
-      rcvString = Serial.readString();
-      weight = rcvString.toInt();
-      Serial.print("Your weight is ");
-      Serial.print(weight);
-    }
-    Serial.println("What is your height in meters?");
-    rcvString = Serial.readString();
-    height = rcvString.toInt(); 
-    Serial.print("Your height is ");
-    Serial.print(height);   
+  while(Serial.available()==0) {
+   }
+  rcvString = Serial.readString();
+  weight = rcvString.toFloat();
+  Serial.print("Your weight is ");
+  Serial.println(weight);
     
-    BMI = weight/pow(height,2);
-    Serial.println("Your BMI is ");
-    Serial.print(BMI); 
-      if (BMI < 16.0) {
-        Serial.println(" You're severely underweight");
-      }
-      else if (16.0 <= BMI <= 18.4)
-        Serial.println(". You're underweight");
-      else if (18.5 <= BMI <= 24.9) {
-        Serial.println(". Your BMI is normal");
-      }
-      else if (25.0 <= BMI <= 29.9) {
-        Serial.println(". You're overweight");
-      }
-      else if (30.0 <= BMI <= 34.9) {
-        Serial.println(". You're obese");
-      }
-      else if (35.0 <= BMI <= 39.9) {
-        Serial.println(". You're severely obese");
-      }
-      else {
-        Serial.println(". You're morbidly obese");
-      }
+  Serial.println("What is your height in meters?");
+  while (Serial.available()==0) {
+  }
+  rcvString = Serial.readString();
+  height = rcvString.toFloat(); 
+  Serial.print("Your height is ");
+  Serial.println(height);   
 
-      Serial.println("");
-      Serial.println("What is your weight in kg?");
+  BMI = weight/pow(height,2);
+  Serial.print("Your BMI is ");
+  Serial.print(BMI); 
+  if (BMI < 16.0) {
+    Serial.println(". You're severely underweight");
+  }
+  else if (16.0 <= BMI <= 18.4) {
+    Serial.println(". You're underweight");
+  }
+  else if (18.5 <= BMI <= 24.9) {
+    Serial.println(". Your BMI is normal");
+  }
+  else if (25.0 <= BMI <= 29.9) {
+    Serial.println(". You're overweight");
+  }
+  else if (30.0 <= BMI <= 34.9) {
+    Serial.println(". You're obese");
+  }
+  else if (35.0 <= BMI <= 39.9) {
+    Serial.println(". You're severely obese");
+  }
+  else {
+    Serial.println(". You're morbidly obese");
+  }
+  x = 18.5*pow(height, 2);
+  y = 24.9*pow(height,2);
+  Serial.print("The healthy weight range for your height is between ");
+  Serial.println(String(x)+" and "+String(y));
+  Serial.println("What is your weight in kg?");
+
 }
-                    
-                
